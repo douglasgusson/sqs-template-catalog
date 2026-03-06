@@ -42,7 +42,7 @@ Uma aplicação web moderna desenvolvida para acelerar e padronizar o teste de m
 1. **Clone o repositório:**
 
 ```bash
-git clone [https://github.com/douglasgusson/sqs-template-catalog.git](https://github.com/douglasgusson/sqs-template-catalog.git)
+git clone https://github.com/douglasgusson/sqs-template-catalog.git
 ```
 
 2. **Acesse a pasta do projeto e instale as dependências:**
