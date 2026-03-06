@@ -1,5 +1,5 @@
 {
-  "name": "catalogo-mensagens",
+  "name": "sqs-template-catalog",
   "version": "0.1.0",
   "private": true,
   "scripts": {
