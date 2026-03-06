@@ -75,6 +75,14 @@ export const GENERATORS: Record<string, GeneratorDefinition> = {
     description: "Gera uma data recente em ISO-8601.",
     generate: () => faker.date.recent().toISOString(),
   },
+  pastDate: {
+    description: "Gera uma data passada em ISO-8601.",
+    generate: () => faker.date.past().toISOString(),
+  },
+  futureDate: {
+    description: "Gera uma data futura em ISO-8601.",
+    generate: () => faker.date.future().toISOString(),
+  },
   alphanumeric: {
     description: "Gera string alfanumérica.",
     generate: () => faker.string.alphanumeric(),
