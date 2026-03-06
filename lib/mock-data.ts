@@ -39,7 +39,7 @@ export function createMockTemplates(): Template[] {
           orderId: "{{orderId}}",
           userId: "{{userId}}",
           customerEmail: "{{@email}}",
-          createdAt: "{{@recentDate}}",
+          createdAt: "{{@date.recent}}",
         },
         null,
         2,
