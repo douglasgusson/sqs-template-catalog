@@ -153,7 +153,7 @@ export function TemplateEditor({
 
             {template.messageAttributes.map((attribute, index) => (
               <div
-                key={`${attribute.key}-${index}`}
+                key={`attribute-${index}`}
                 className="grid gap-2 md:grid-cols-[1fr_140px_1fr_auto]"
               >
                 <Input
