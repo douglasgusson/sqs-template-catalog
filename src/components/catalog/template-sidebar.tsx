@@ -48,21 +48,34 @@ export function TemplateSidebar({
             key={template.id}
             className={cn(
               "rounded-xl border p-3 transition-colors",
-              template.id === selectedTemplateId ? "border-foreground" : "border-border",
+              template.id === selectedTemplateId
+                ? "border-foreground"
+                : "border-border",
             )}
           >
-            <button
-              type="button"
-              className="w-full text-left"
-              onClick={() => onSelectTemplate(template.id)}
-            >
-              <p className="line-clamp-1 text-sm font-medium">{template.name}</p>
-              <p className="line-clamp-2 text-xs text-muted-foreground">
-                {template.description || "Sem descrição"}
-              </p>
-            </button>
+            <div className="relative">
+              <label htmlFor={template.id} className="font-medium leading-none">
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-0 cursor-pointer"
+                />
+                <p className="line-clamp-1 text-sm font-medium">
+                  {template.name}
+                </p>
+                <p className="line-clamp-2 text-xs text-muted-foreground">
+                  {template.description || "Sem descrição"}
+                </p>
+                <input
+                  type="checkbox"
+                  className="hidden"
+                  checked={template.id === selectedTemplateId}
+                  id={template.id}
+                  onChange={() => onSelectTemplate(template.id)}
+                />
+              </label>
+            </div>
 
-            <div className="mt-2 flex justify-end gap-1">
+            <div className="mt-2 flex justify-end gap-0.5">
               <Button
                 size="icon"
                 variant="ghost"
