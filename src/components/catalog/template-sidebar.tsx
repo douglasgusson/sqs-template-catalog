@@ -1,9 +1,12 @@
 "use client";
 
-import { Copy, Plus, Trash2 } from "lucide-react";
+import { useMemo, useState } from "react";
+import Fuse from "fuse.js";
+import { Copy, Plus, Search, Trash2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { type Template } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
@@ -24,6 +27,22 @@ export function TemplateSidebar({
   onDuplicateTemplate,
   onDeleteTemplate,
 }: TemplateSidebarProps) {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const fuse = useMemo(
+    () =>
+      new Fuse(templates, {
+        keys: ["name", "description"],
+        threshold: 0.4,
+      }),
+    [templates],
+  );
+
+  const filteredTemplates = useMemo(() => {
+    if (!searchQuery.trim()) return templates;
+    return fuse.search(searchQuery).map((result) => result.item);
+  }, [fuse, searchQuery, templates]);
+
   return (
     <Card className="sticky top-6 flex max-h-[calc(100vh-8rem)] flex-col overflow-hidden">
       <CardHeader className="pb-3">
@@ -34,6 +53,15 @@ export function TemplateSidebar({
             Novo
           </Button>
         </div>
+        <div className="relative">
+          <Search className="absolute left-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+          <Input
+            placeholder="Buscar template..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="pl-8"
+          />
+        </div>
       </CardHeader>
 
       <CardContent className="min-h-0 space-y-2 overflow-y-auto">
@@ -41,9 +69,13 @@ export function TemplateSidebar({
           <p className="text-sm text-muted-foreground">
             Nenhum template cadastrado. Clique em &quot;Novo&quot; para iniciar.
           </p>
+        ) : filteredTemplates.length === 0 ? (
+          <p className="text-sm text-muted-foreground">
+            Nenhum template encontrado para &quot;{searchQuery}&quot;.
+          </p>
         ) : null}
 
-        {templates.map((template) => (
+        {filteredTemplates.map((template) => (
           <div
             key={template.id}
             className={cn(
