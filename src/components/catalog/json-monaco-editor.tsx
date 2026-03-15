@@ -7,7 +7,7 @@ import { listGenerators } from "@/lib/generators";
 interface JsonMonacoEditorProps {
   value: string;
   onChange: (value: string) => void;
-  height?: number;
+  height?: string | number;
   readOnly?: boolean;
 }
 

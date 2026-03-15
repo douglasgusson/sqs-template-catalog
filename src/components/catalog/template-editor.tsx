@@ -1,6 +1,7 @@
 "use client";
 
-import { Plus, Send, Save, Trash2, Eye } from "lucide-react";
+import { useState } from "react";
+import { Plus, Send, Save, Trash2, Eye, Maximize2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -10,6 +11,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import { JsonMonacoEditor } from "@/components/catalog/json-monaco-editor";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -35,6 +43,8 @@ export function TemplateEditor({
   onPreviewTemplate,
   onSendTemplate,
 }: TemplateEditorProps) {
+  const [isEditorExpanded, setIsEditorExpanded] = useState(false);
+
   if (!template) {
     return (
       <Card>
@@ -105,7 +115,18 @@ export function TemplateEditor({
         </div>
 
         <div className="space-y-1.5">
-          <Label htmlFor="template-json">JSON Body</Label>
+          <div className="flex items-center justify-between">
+            <Label htmlFor="template-json">JSON Body</Label>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setIsEditorExpanded(true)}
+              title="Ampliar editor"
+            >
+              <Maximize2 className="mr-1 h-4 w-4" />
+              Ampliar
+            </Button>
+          </div>
           <div className="rounded-lg border bg-muted">
             <JsonMonacoEditor
               value={template.jsonBody}
@@ -118,6 +139,26 @@ export function TemplateEditor({
             />
           </div>
         </div>
+
+        <Dialog open={isEditorExpanded} onOpenChange={setIsEditorExpanded}>
+          <DialogContent className="sm:max-w-[90vw] h-[90vh] flex flex-col">
+            <DialogHeader>
+              <DialogTitle>JSON Body — {template.name}</DialogTitle>
+            </DialogHeader>
+            <div className="flex-1 min-h-0 rounded-lg border bg-muted">
+              <JsonMonacoEditor
+                value={template.jsonBody}
+                height="calc(90vh - 140px)"
+                onChange={(value) =>
+                  onTemplateChange({
+                    ...template,
+                    jsonBody: value,
+                  })
+                }
+              />
+            </div>
+          </DialogContent>
+        </Dialog>
 
         <div className="space-y-3">
           <div className="flex items-center justify-between">
