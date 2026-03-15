@@ -22,6 +22,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "preview": "next build && next start",
     "lint": "eslint"
   },
   "dependencies": {
