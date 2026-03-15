@@ -26,6 +26,14 @@ interface PreviewDialogProps {
   isLoading?: boolean;
 }
 
+function prettyPrintJson(value: string) {
+  try {
+    return JSON.stringify(JSON.parse(value), null, 2);
+  } catch {
+    return value;
+  }
+}
+
 export function PreviewDialog({
   isOpen,
   onClose,
@@ -64,7 +72,8 @@ export function PreviewDialog({
       setCopiedAttributes(true);
       toast({
         title: "Copiado",
-        description: "Message attributes foram copiados para a área de transferência.",
+        description:
+          "Message attributes foram copiados para a área de transferência.",
       });
       setTimeout(() => setCopiedAttributes(false), 2000);
     } catch {
@@ -90,11 +99,7 @@ export function PreviewDialog({
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <h3 className="text-sm font-semibold">JSON Body</h3>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={handleCopyPayload}
-              >
+              <Button variant="outline" size="sm" onClick={handleCopyPayload}>
                 {copiedPayload ? (
                   <>
                     <Check className="mr-1 h-4 w-4" />
@@ -110,8 +115,8 @@ export function PreviewDialog({
             </div>
             <div className="rounded-md border bg-muted">
               <JsonMonacoEditor
-                value={finalPayload}
-                onChange={() => { }}
+                value={prettyPrintJson(finalPayload)}
+                onChange={() => {}}
                 readOnly={true}
               />
             </div>
