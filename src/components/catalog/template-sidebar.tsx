@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Fuse from "fuse.js";
 import { Copy, Plus, Search, Trash2 } from "lucide-react";
 
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -58,7 +59,12 @@ export function TemplateSidebar({
     <Card className="sticky top-6 flex max-h-[calc(100vh-8rem)] flex-col overflow-hidden">
       <CardHeader className="pb-3">
         <div className="flex items-center justify-between gap-2">
-          <CardTitle className="text-base">Templates salvos</CardTitle>
+          <CardTitle className="flex items-center gap-2 text-base">
+            Templates salvos
+            <Badge variant="secondary" className="tabular-nums">
+              {templates.length}
+            </Badge>
+          </CardTitle>
           <Button size="sm" onClick={onCreateTemplate}>
             <Plus className="mr-1 h-4 w-4" />
             Novo
