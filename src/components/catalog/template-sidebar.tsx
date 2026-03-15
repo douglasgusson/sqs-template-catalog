@@ -6,6 +6,17 @@ import { Copy, Plus, Search, Trash2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { Input } from "@/components/ui/input";
 import { type Template } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -117,15 +128,35 @@ export function TemplateSidebar({
                 <Copy className="h-4 w-4" />
                 <span className="sr-only">Duplicar template</span>
               </Button>
-              <Button
-                size="icon"
-                variant="ghost"
-                title="Excluir template"
-                onClick={() => onDeleteTemplate(template.id)}
-              >
-                <Trash2 className="h-4 w-4" />
-                <span className="sr-only">Excluir template</span>
-              </Button>
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button
+                    size="icon"
+                    variant="ghost"
+                    title="Excluir template"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                    <span className="sr-only">Excluir template</span>
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Excluir template</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      Tem certeza que deseja excluir <strong>{template.name}</strong>? Essa ação não pode ser desfeita.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                    <AlertDialogAction
+                      variant="destructive"
+                      onClick={() => onDeleteTemplate(template.id)}
+                    >
+                      Excluir
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
             </div>
           </div>
         ))}
