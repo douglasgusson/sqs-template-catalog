@@ -19,8 +19,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Catálogo de Templates SQS",
-  description: "Catálogo interno para testes de mensagens orientadas a eventos.",
+  title: "Pigeon SQS Dispatcher",
+  description: "Catálogo de templates e dispatcher para testes de mensagens SQS em arquiteturas orientadas a eventos.",
 };
 
 export default function RootLayout({

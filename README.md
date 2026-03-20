@@ -4,11 +4,11 @@
 
 Uma aplicação web moderna desenvolvida para acelerar e padronizar o teste de microsserviços e arquiteturas orientadas a eventos. 
 
-**Objetivo Central:** Eliminar o preenchimento manual, demorado e propenso a erros de payloads no console da AWS. Este app permite que desenvolvedores e QAs criem um catálogo centralizado de templates SQS, injetem dados mockados dinamicamente em tempo de execução e façam a publicação direta nas filas com apenas um clique.
+**Objetivo Central:** Eliminar o preenchimento manual, demorado e propenso a erros de payloads no console da AWS. O Pigeon permite que desenvolvedores e QAs criem um catálogo centralizado de templates SQS, injetem dados mockados dinamicamente em tempo de execução e façam a publicação direta nas filas com apenas um clique.
 
 📚 **Documentação interna:** acesse em [http://localhost:3000/docs](http://localhost:3000/docs)
 
-![Tela principal do SQS Template Catalog mostrando a lista de templates, o editor Monaco com placeholders dinâmicos, e um modal para preenchimento de variáveis manuais.](./screenshots/catalog.png)
+![Tela principal do Pigeon SQS Dispatcher mostrando a lista de templates, o editor Monaco com placeholders dinâmicos, e um modal para preenchimento de variáveis manuais.](./screenshots/catalog.png)
 
 ---
 
@@ -18,9 +18,9 @@ Uma aplicação web moderna desenvolvida para acelerar e padronizar o teste de m
 * **🔍 Busca Fuzzy:** Filtre templates rapidamente por nome ou descrição usando busca fuzzy (powered by [Fuse.js](https://www.fusejs.io/)).
 * **💻 Editor Avançado (Monaco):** O mesmo motor de edição do VS Code integrado na web, oferecendo validação de sintaxe JSON e highlight nativos.
   * **Editor Ampliado:** Expanda o editor em tela cheia para edição confortável de payloads grandes.
-* **🎲 Geradores Automáticos (encapsulando Faker):** Use placeholders como `{{@email}}`, `{{@uuid}}`, `{{@cpf}}`, `{{@person.fullName}}`, `{{@finance.amount}}` e muitos outros.
+* **🎲 Geradores Automáticos (encapsulando Faker):** Use placeholders como `{{@email}}`, `{{@uuid}}`, `{{@person.cpf}}`, `{{@person.fullName}}`, `{{@finance.amount}}` e muitos outros.
   * **IntelliSense integrado:** O Monaco sugere os geradores assim que você digita `@` dentro do placeholder.
-  * Categorias disponíveis: pessoa, localização, data, veículo, alfanumérico, número, finanças e internet.
+  * Categorias disponíveis: pessoa, localização, data, data (somente data), veículo, alfanumérico, número, finanças e internet.
 * **🧠 Tipagem Declarativa no Placeholder:** Você pode declarar o tipo em `{{nome:tipo}}` ou `{{@gerador:tipo}}` com `string`, `number` ou `boolean`.
   * Ex.: `"idade": "{{idadeUsuario:number}}"` e `"ativo": "{{@boolean:boolean}}"`.
   * O parser converte o tipo e remove aspas no payload final para `number` e `boolean`.
@@ -55,13 +55,13 @@ Uma aplicação web moderna desenvolvida para acelerar e padronizar o teste de m
 1. **Clone o repositório:**
 
 ```bash
-git clone https://github.com/douglasgusson/sqs-template-catalog.git
+git clone https://github.com/douglasgusson/pigeon.git
 ```
 
 2. **Acesse a pasta do projeto e instale as dependências:**
 
 ```bash
-cd sqs-template-catalog
+cd pigeon
 pnpm install # ou npm install
 ```
 
@@ -124,16 +124,16 @@ Abra [http://localhost:3000](http://localhost:3000) no seu navegador.
 
 | Categoria | Geradores |
 |---|---|
-| **Internet** | `@email`, `@url` |
-| **Identificadores** | `@uuid`, `@cpf` |
-| **Pessoa** | `@person.fullName`, `@person.firstName`, `@person.lastName`, `@person.sex` |
-| **Localização** | `@location.country`, `@location.state`, `@location.city`, `@location.zipCode`, `@location.streetAddress` |
-| **Data** | `@date.past`, `@date.future`, `@date.recent`, `@date.soon`, `@date.timestamp` |
-| **Veículo** | `@vehicle.manufacturer`, `@vehicle.model`, `@vehicle.color`, `@vehicle.vin` |
-| **Numérico** | `@number.int`, `@number.float` |
+| **Pessoa** | `@person.fullName`, `@person.fullName.male`, `@person.fullName.female`, `@person.firstName`, `@person.lastName`, `@person.sex`, `@person.sex.abbreviation`, `@person.birthdate`, `@person.cpf`, `@person.phone` |
+| **Localização** | `@location.country`, `@location.state.name`, `@location.state.abbreviation`, `@location.city`, `@location.zipCode`, `@location.streetAddress` |
+| **Data (ISO-8601)** | `@date.past`, `@date.future`, `@date.recent`, `@date.soon`, `@date.timestamp` |
+| **Data (YYYY-MM-DD)** | `@dateonly.past`, `@dateonly.future`, `@dateonly.recent`, `@dateonly.soon` |
+| **Veículo** | `@vehicle`, `@vehicle.manufacturer`, `@vehicle.model`, `@vehicle.color`, `@vehicle.vin`, `@vehicle.fuel` |
 | **Alfanumérico** | `@alphanumeric.short`, `@alphanumeric.medium`, `@alphanumeric.long` |
+| **Numérico** | `@number.int`, `@number.float` |
 | **Finanças** | `@finance.amount`, `@finance.currencyCode`, `@finance.iban` |
-| **Outros** | `@phone`, `@boolean` |
+| **Internet** | `@email`, `@url` |
+| **Outros** | `@uuid`, `@boolean` |
 
 ---
 

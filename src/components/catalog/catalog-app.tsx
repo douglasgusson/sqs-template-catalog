@@ -353,7 +353,7 @@ export function CatalogApp() {
       <main className="mx-auto w-full max-w-7xl p-6">
         <div className="mb-6 flex flex-wrap items-start justify-between gap-3">
           <div>
-            <h1 className="text-2xl font-semibold">Catálogo de Templates SQS</h1>
+            <h1 className="text-2xl font-semibold">Pigeon SQS Dispatcher</h1>
             <p className="text-sm text-muted-foreground">
               Catálogo interno para editar, gerar payloads dinâmicos e publicar mensagens no SQS.
             </p>
