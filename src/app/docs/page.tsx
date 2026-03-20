@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { listGenerators } from "@/lib/generators";
 
@@ -21,7 +22,16 @@ export default function DocsPage() {
   return (
     <main className="mx-auto w-full max-w-5xl space-y-6 p-6">
       <header className="space-y-2">
-        <h1 className="text-3xl font-semibold tracking-tight">Manual — Catálogo SQS</h1>
+        <h1 className="flex items-center gap-3 text-3xl font-semibold tracking-tight">
+          <Image
+            src="/pigeon.png"
+            alt="Pigeon SQS Dispatcher"
+            width={40}
+            height={40}
+            className="shrink-0"
+          />
+          Manual — Pigeon SQS Dispatcher
+        </h1>
         <p className="text-sm text-muted-foreground">
           Guia oficial de uso do catálogo de templates, parser tipado e fluxo de envio para AWS SQS.
         </p>

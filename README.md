@@ -1,4 +1,6 @@
-# 📨 SQS Template Catalog & Tester
+# 📨 Pigeon SQS Dispatcher
+
+<img src="./public/pigeon.png" alt="Pigeon SQS Dispatcher" width="120" height="120" />
 
 Uma aplicação web moderna desenvolvida para acelerar e padronizar o teste de microsserviços e arquiteturas orientadas a eventos. 
 

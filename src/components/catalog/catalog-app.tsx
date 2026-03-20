@@ -43,7 +43,7 @@ export function CatalogApp() {
   const [isManualVariablesModalOpen, setIsManualVariablesModalOpen] = useState(false);
   const [manualVariables, setManualVariables] = useState<ManualVariableDefinition[]>([]);
   const [pendingTemplateToSend, setPendingTemplateToSend] = useState<Template | null>(null);
-  
+
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const [previewPayload, setPreviewPayload] = useState<string>("");
   const [previewAttributes, setPreviewAttributes] = useState<TemplateMessageAttribute[]>([]);
@@ -51,7 +51,7 @@ export function CatalogApp() {
   const [previewManualVariables, setPreviewManualVariables] = useState<ManualVariableDefinition[]>([]);
   const [isPreviewManualVariablesModalOpen, setIsPreviewManualVariablesModalOpen] = useState(false);
   const [pendingPreviewManualValues, setPendingPreviewManualValues] = useState<Record<string, string>>({});
-  
+
   const importFileInputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {

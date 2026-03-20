@@ -1,13 +1,13 @@
 {
-  "name": "sqs-template-catalog",
+  "name": "pigeon-sqs-dispatcher",
   "version": "0.1.0",
-  "description": "A simple message catalog for SQS templates.",
+  "description": "A SQS dispatcher for event-driven architectures.",
   "author": {
     "name": "Douglas Gusson",
     "url": "https://github.com/douglasgusson"
   },
   "license": "MIT",
-  "homepage": "https://github.com/douglasgusson/sqs-template-catalog",
+  "homepage": "https://github.com/douglasgusson/pigeon",
   "keywords": [
     "sqs",
     "aws",
